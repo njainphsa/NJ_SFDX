@@ -14,4 +14,9 @@ public with sharing class AccountService {
     public void method3(){
         //Test Changes
     }
+
+    public void method4(){
+        //Test Changes
+    }
+
 }
