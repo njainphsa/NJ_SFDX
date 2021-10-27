@@ -1,22 +1,26 @@
 public with sharing class AccountService {
     public AccountService() {
+        selectById();
+        method1();
+        method2();
+        method4();
 
     }
 
     public void selectById(){
-        //Query Method 
+        String str = 'ytest1';
+    }
+
+    public void method1(){
+        String str = 'ytest1';
     }
 
     public void method2(){
-    //Test Changes
-    }
-
-    public void method3(){
-        //Test Changes
+        String str = 'ytest1';
     }
 
     public void method4(){
-        //Test Changes
+        String str = 'ytest1';
     }
 
 }
