@@ -6,7 +6,12 @@ public with sharing class AccountService {
     public void selectById(){
         //Query Method 
     }
-     public void method2(){
+
+    public void method2(){
+    //Test Changes
+    }
+
+    public void method3(){
         //Test Changes
-     }
+    }
 }
