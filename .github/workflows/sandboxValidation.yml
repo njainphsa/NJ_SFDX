@@ -42,7 +42,7 @@ jobs:
               
           # deploy to mdapi
             - name: "Convert to mdapi"
-              run: sfdx force:mdapi:deploy -d ./mkdir -w 100 -l RunAllTestsInOrg -c -u sb
+              run: sfdx force:mdapi:deploy -d ./mkdir -w 100 -l RunSpecifiedTests -r AccountServiceTest -c -u sb
               
               
               
