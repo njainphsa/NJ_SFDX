@@ -56,7 +56,7 @@ jobs:
 
             # Deploy source to scratch org
             - name: 'Push source to scratch org'
-              run: sfdx force:source:deploy -p ./GitLearning/force-app
+              run: sfdx force:source:push
 
             # Housekeeping
             - name: 'Delete scratch org'
