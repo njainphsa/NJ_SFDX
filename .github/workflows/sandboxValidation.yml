@@ -34,19 +34,19 @@ jobs:
               
           # Authenticate dev hub
             - name: "Authenticate Dev Hub"
-              run: sfdx auth:sfdxurl:store \
-                   --sfdxurlfile ./SB_URL.txt \
-                   --setdefaultdevhubusername \
+              run: sfdx auth:sfdxurl:store 
+                   --sfdxurlfile ./SB_URL.txt 
+                   --setdefaultdevhubusername 
                    --setalias integrationDevSB 
 
           # deploy to mdapi
-            - name: "Convert to mdapi"
-              run: sfdx force:source:deploy \
-                   --sourcepath force-app/main/default \
-                   --wait 100 \ 
-                   --testlevel RunSpecifiedTests \
-                   --runtests AccountServiceTest \
-                   --checkonly \
+            - name: "Validate source code"
+              run: sfdx force:source:deploy 
+                   --sourcepath force-app/main/default 
+                   --wait 100 
+                   --testlevel RunSpecifiedTests 
+                   --runtests AccountServiceTest 
+                   --checkonly 
                    --targetusername integrationDevSB
               
               
