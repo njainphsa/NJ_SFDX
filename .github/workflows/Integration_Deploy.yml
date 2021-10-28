@@ -1,0 +1,53 @@
+# Unique name for this workflow
+name: sandboxValidation
+
+# Definition when the workflow should run
+on:
+    workflow_dispatch:
+    push:
+        branches:
+            - main
+        paths-ignore:
+            - 'sfdx-project.json'
+            - 'README.md'
+# Jobs to be executed
+jobs:
+    sandbox-org-test:
+        runs-on: ubuntu-latest
+        steps:
+          # Install Salesforce CLI
+            - name: 'Install Salesforce CLI'
+              run: |
+                  wget https://developer.salesforce.com/media/salesforce-cli/sfdx/channels/stable/sfdx-linux-x64.tar.xz
+                  mkdir ~/sfdx
+                  tar xJf sfdx-linux-x64.tar.xz -C ~/sfdx --strip-components 1
+                  echo "$HOME/sfdx/bin" >> $GITHUB_PATH
+                  ~/sfdx/bin/sfdx version
+          # Checkout the source code
+            - name: 'Checkout source code'
+              uses: actions/checkout@v2
+              
+          # Store secret for dev hub
+            - name: "Populate auth file with INTEGRATION_SB_URL secret"
+              shell: bash
+              run: echo ${{ secrets.INTEGRATION_SB_URL}} > ./INTEGRATION_SB_URL.txt
+              
+          # Authenticate dev hub
+            - name: "Authenticate Dev Hub"
+              run: sfdx auth:sfdxurl:store 
+                   --sfdxurlfile ./INTEGRATION_SB_URL.txt 
+                   --setdefaultdevhubusername 
+                   --setalias integrationDevSB 
+
+          # deploy to mdapi
+            - name: "Validate source code"
+              run: sfdx force:source:deploy 
+                   --sourcepath force-app/main/default 
+                   --wait 100 
+                   --targetusername integrationDevSB
+              
+              
+              
+
+
+        
