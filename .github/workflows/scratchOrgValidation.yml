@@ -44,7 +44,10 @@ jobs:
 
           # Authenticate dev hub
             - name: "Authenticate Dev Hub"
-              run: sfdx auth:sfdxurl:store -f ./TEST_URL.txt -a devhub -d
+              run: sfdx auth:sfdxurl:store 
+                   --sfdxurlfile ./SB_URL.txt 
+                   --setdefaultdevhubusername 
+                   --setalias integrationDevSB 
 
           # Remove auth file
             - name: "Remove auth file"
@@ -52,19 +55,27 @@ jobs:
 
             # Create scratch org
             - name: 'Create scratch org'
-              run: sfdx force:org:create -f ./config/project-scratch-def.json -a scratch-org -s -d 1
+              run: sfdx force:org:create 
+                   --targetdevhubusername integrationDevSB 
+                   --definitionfile ./config/project-scratch-def.json 
+                   --targetusername validationOrg 
+                   --setdefaultusername 
+                   --durationdays 1
 
-            # Deploy source to scratch org
-            - name: 'Push source to scratch org'
-              run: sfdx force:source:push
+            # deploy to scratchOrg
+            - name: "Validate source code"
+              run: sfdx force:source:deploy 
+                   --sourcepath force-app/main/default 
+                   --wait 100 
+                   --targetusername validationOrg
               
             # Run Apex tests in scratch org
             - name: 'Run Apex tests'
-              run: sfdx force:apex:test:run -c -r human -d ./tests/apex -w 20
-
-            # Delete temporary test file that Codecov is unable to parse
-            - name: 'Delete coverage file (temporary step)'
-              run: rm ./tests/apex/test-result-707*-codecoverage.json
+              run: sfdx force:apex:test:run 
+                   --testlevel RunAllTestsInOrg 
+                   --codecoverage human 
+                   --outputdir ./tests/apex 
+                   --wait 20
 
             # Housekeeping
             - name: 'Delete scratch org'
