@@ -28,14 +28,14 @@ jobs:
               uses: actions/checkout@v2
               
           # Store secret for dev hub
-            - name: "Populate auth file with Sanbox_SFDX_URL secret"
+            - name: "Populate auth file with INTEGRATION_SB_URL secret"
               shell: bash
-              run: echo ${{ secrets.SB_URL}} > ./SB_URL.txt
+              run: echo ${{ secrets.INTEGRATION_SB_URL}} > ./INTEGRATION_SB_URL.txt
               
           # Authenticate dev hub
             - name: "Authenticate Dev Hub"
               run: sfdx auth:sfdxurl:store 
-                   --sfdxurlfile ./SB_URL.txt 
+                   --sfdxurlfile ./INTEGRATION_SB_URL.txt 
                    --setdefaultdevhubusername 
                    --setalias integrationDevSB 
 
