@@ -35,7 +35,7 @@ jobs:
           # Authenticate dev hub
             - name: "Authenticate Dev Hub"
               run: sfdx auth:sfdxurl:store 
-                   --sfdxurlfile ./SB_URL.txt 
+                   --sfdxurlfile ./TEST_URL.txt 
                    --setdefaultdevhubusername 
                    --setalias integrationDevSB 
 
