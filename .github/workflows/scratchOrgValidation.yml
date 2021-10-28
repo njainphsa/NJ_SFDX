@@ -31,17 +31,7 @@ jobs:
             - name: "Populate auth file with DEVHUB_SFDX_URL secret"
               shell: bash
               run: echo ${{ secrets.TEST_URL}} > ./TEST_URL.txt
-              
-          # Print Secret
-            - name: "Print Secret2"
-              shell: bash
-              run: echo ${{ secrets.TEST_URL}}
-              
-          # Print File
-            - name: "Print Secret"
-              shell: bash
-              run: echo "$(./TEST_URL.txt)"
-
+          
           # Authenticate dev hub
             - name: "Authenticate Dev Hub"
               run: sfdx auth:sfdxurl:store 
