@@ -48,7 +48,7 @@ jobs:
               run: sfdx force:org:create 
                    --targetdevhubusername integrationDevSB 
                    --definitionfile ./config/project-scratch-def.json 
-                   --targetusername validationOrg 
+                   --setalias validationOrg 
                    --setdefaultusername 
                    --durationdays 1
 
@@ -56,9 +56,9 @@ jobs:
             - name: "Validate source code"
               run: sfdx force:source:deploy 
                    --sourcepath force-app/main/default 
-                   --wait 100 
+                   --wait 100
                    --targetusername validationOrg
-              
+                   
             # Run Apex tests in scratch org
             - name: 'Run Apex tests'
               run: sfdx force:apex:test:run 
