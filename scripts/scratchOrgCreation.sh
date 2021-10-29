@@ -32,7 +32,9 @@ echo "🐼 Installing package, please wait. It may take a while."
 packageId="04t4W000002g0asQAA"
 sfdx force:package:install \
 --package "${packageId}" \
---targetusername validationOrg -w 10
+--targetusername validationOrg \
+--wait 15
+
 if [ "$?" = "1" ]
 then
   echo "🐼 "
