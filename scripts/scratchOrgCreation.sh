@@ -5,7 +5,7 @@ echo "Authenticating Dev Hub"
 authURL = "force://PlatformCLI::5Aep861FpKlGRwv8KDJ.IORqWSwK27gBwEalQxDVda6lxUsH_ZPvpOwxauEp6WebKaklxAtu3EfCy3gcVJOiLKD@poprekcloudsolutions-dev-ed.my.salesforce.com"
 echo "${authURL}" > ./DEVHUB_SFDX_URL.txt
 
-sfdx auth:sfdxurl:store --sfdxurlfile ./DEVHUB_SFDX_URL.txt --setdefaultdevhubusername --setalias integrationDevSB 
+sfdx auth:sfdxurl:store --sfdxurlfile ./DevHubTest.txt --setdefaultdevhubusername --setalias integrationDevSB 
 
 if [ "$?" = "1" ]
   then
