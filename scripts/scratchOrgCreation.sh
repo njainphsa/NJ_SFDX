@@ -4,10 +4,11 @@
 echo "Authenticating Dev Hub"
 echo ${{ secrets.DEVHUB_SFDX_URL}} > ./DEVHUB_SFDX_URL.txt
 
-sfdx auth:sfdxurl:store 
-                   --sfdxurlfile ./DEVHUB_SFDX_URL.txt 
-                   --setdefaultdevhubusername 
-                   --setalias integrationDevSB 
+sfdx auth:sfdxurl:store \ 
+--sfdxurlfile ./DEVHUB_SFDX_URL.txt \ 
+--setdefaultdevhubusername \ 
+--setalias integrationDevSB 
+
 if [ "$?" = "1" ]
   then
     echo "ERROR: Authentication failed"
