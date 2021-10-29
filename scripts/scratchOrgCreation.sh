@@ -15,12 +15,12 @@ if [ "$?" = "1" ]
 echo "Authentication Successful"
 rm -f ./DEVHUB_SFDX_URL.txt
 echo "Creating Scratch Org..."
-sfdx force:org:create 
-                   --targetdevhubusername integrationDevSB 
-                   --definitionfile ./config/project-scratch-def.json 
-                   --setalias validationOrg 
-                   --setdefaultusername 
-                   --durationdays 1
+sfdx force:org:create \
+--targetdevhubusername integrationDevSB \
+--definitionfile ./config/project-scratch-def.json \
+--setalias validationOrg \
+--setdefaultusername \
+--durationdays 1
 
 if [ "$?" = "1" ]
   then
