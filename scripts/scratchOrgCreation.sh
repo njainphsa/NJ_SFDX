@@ -3,7 +3,7 @@
 
 echo "Authenticating Dev Hub"
 authURL = "force://PlatformCLI::5Aep861FpKlGRwv8KDJ.IORqWSwK27gBwEalQxDVda6lxUsH_ZPvpOwxauEp6WebKaklxAtu3EfCy3gcVJOiLKD@poprekcloudsolutions-dev-ed.my.salesforce.com"
-echo "${{authURL}}" > ./DEVHUB_SFDX_URL.txt
+echo "${authURL}" > ./DEVHUB_SFDX_URL.txt
 
 sfdx auth:sfdxurl:store --sfdxurlfile ./DEVHUB_SFDX_URL.txt --setdefaultdevhubusername --setalias integrationDevSB 
 
