@@ -1,7 +1,7 @@
 {
-  "orgName": "nileshjain company",
-  "edition": "Developer",
-  "features": ["EnableSetPasswordInApi"],
+  "orgName": "PSS",
+  "edition": "Enterprise",
+  "features": ["ServiceCloud", "PlatformEncryption", "PersonAccounts", "HealthCloudUser","ContactsToMultipleAccounts"],
   "settings": {
     "lightningExperienceSettings": {
       "enableS1DesktopEnabled": true
