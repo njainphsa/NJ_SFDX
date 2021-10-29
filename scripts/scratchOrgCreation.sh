@@ -30,7 +30,9 @@ if [ "$?" = "1" ]
 echo "Scratch Org Created Successfully..."
 echo "🐼 Installing package, please wait. It may take a while."
 packageId="04t4W000002g0asQAA"
-sfdx force:package:install -p "${packageId}" -u validationOrg -w 10
+sfdx force:package:install \
+--package "${packageId}" \
+--targetusername validationOrg -w 10
 if [ "$?" = "1" ]
 then
   echo "🐼 "
@@ -43,7 +45,9 @@ interval=180
 ((end_time=${SECONDS}+3600))
 while ((${SECONDS} < ${end_time}))
  do
-  sfdx force:source:deploy -p force-app/main/default -u validationOrg
+  sfdx force:source:deploy \
+  --sourcepath force-app/main/default \
+  --targetusername validationOrg
   if [ "$?" = "1" ]
   then
       echo "Package installation in progress"
@@ -54,16 +58,16 @@ while ((${SECONDS} < ${end_time}))
   done 
 
 echo "Running Test Classes..."
-sfdx force:apex:test:run 
-                   --testlevel RunAllTestsInOrg 
-                   --codecoverage 
-                   --resultformat human 
-                   --outputdir ./tests/apex 
-                   --wait 20
+sfdx force:apex:test:run \
+--testlevel RunAllTestsInOrg \
+--codecoverage \
+--resultformat human \
+--outputdir ./tests/apex \
+--wait 20
 
 echo "Deleting the scratch Org..."
-sfdx force:org:delete 
-                   --noprompt 
-                   --targetusername validationOrg
+sfdx force:org:delete \
+--noprompt \
+--targetusername validationOrg
 
 echo "Validation Successful..."
