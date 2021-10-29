@@ -50,9 +50,10 @@ while ((${SECONDS} < ${end_time}))
   --targetusername validationOrg
   if [ "$?" = "1" ]
   then
-      echo "Package installation in progress"
+      echo "Package installation in progress, Attempting to deploy again shortly..."
     else
-        echo "Package installed successfully" 
+        echo "Package installed successfully"
+        break
     fi
     sleep ${interval}
   done 
