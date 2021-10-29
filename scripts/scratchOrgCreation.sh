@@ -2,7 +2,7 @@
 # ECHO COMMAND
 
 echo "Authenticating Dev Hub"
-echo ${{ secrets.DEVHUB_SFDX_URL}} > ./DEVHUB_SFDX_URL.txt
+echo ${{ secrets.NJ_SFDX_DEVHUB_SFDX_URL}} > ./DEVHUB_SFDX_URL.txt
 
 sfdx auth:sfdxurl:store \ 
 --sfdxurlfile ./DEVHUB_SFDX_URL.txt \ 
