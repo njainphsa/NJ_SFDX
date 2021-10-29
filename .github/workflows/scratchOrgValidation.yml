@@ -30,4 +30,4 @@ jobs:
           # Store secret for dev hub
             - name: "Populate auth file with DEVHUB_SFDX_URL secret"
               shell: bash
-              run: bash ./scripts/scratchOrgCreation.sh
+              run: bash ./scripts/scratchOrgCreation.sh ${{ secrets.DEVHUB_SFDX_URL }}
